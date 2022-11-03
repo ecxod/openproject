@@ -96,9 +96,9 @@ module DemoData
       welcome = demo_data_for('welcome')
 
       if welcome.present?
-        Setting.welcome_title = welcome[:title]
-        Setting.welcome_text = welcome[:text]
-        Setting.welcome_on_homescreen = 1
+        Setting.set_default(:welcome_title, welcome[:title])
+        Setting.set_default(:welcome_text, welcome[:text])
+        Setting.set_default(:welcome_on_homescreen, 1)
       end
     end
 

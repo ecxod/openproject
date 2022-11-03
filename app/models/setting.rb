@@ -208,6 +208,13 @@ class Setting < ApplicationRecord
     end
   end
 
+  def self.set_default(name, value)
+    definition = Settings::Definition[name]
+    return unless definition.writable?
+
+    self[name] ||= value
+  end
+
   # Check whether a setting was defined
   def self.exists?(name)
     Settings::Definition[name].present?

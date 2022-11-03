@@ -207,6 +207,33 @@ describe Setting, type: :model do
     end
   end
 
+  describe '.set_default' do
+    before do
+      Setting.welcome_text = value
+    end
+
+    subject do
+      Setting.set_default(:welcome_text, 'default')
+      Setting.welcome_text
+    end
+
+    context 'with value' do
+      let(:value) { 'foo' }
+
+      it 'keeps the current value' do
+        expect(subject).to eq 'foo'
+      end
+    end
+
+    context 'with no value' do
+      let(:value) { nil }
+
+      it 'applies the default' do
+        expect(subject).to eq 'default'
+      end
+    end
+  end
+
   describe ".installation_uuid" do
     after do
       described_class.find_by(name: "installation_uuid")&.destroy

@@ -31,6 +31,6 @@ class DigestMailerPreview < ActionMailer::Preview
 
   def work_packages
     notifications = Notification.where(resource_type: 'WorkPackage')
-    DigestMailer.work_packages(notifications.first.recipient_id, [notifications.ids])
+    DigestMailer.work_packages(notifications.first.recipient_id, [22, 20, 23])
   end
 end

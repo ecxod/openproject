@@ -132,7 +132,6 @@ describe DigestMailer do
     end
 
     describe "#date_alerts_text" do
-      let!(:color) { create(:color) }
       let!(:project1) { create(:project) }
       let!(:recipient) { create(:user) }
       let(:notifications) { [notification] }

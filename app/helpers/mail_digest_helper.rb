@@ -122,6 +122,6 @@ module MailDigestHelper
   def highlight_overdue(text, is_overdue, html)
     return text unless html && is_overdue
 
-    h "<span style='color: #C92A2A'> #{text}</span>"
+    content_tag :span, text, style: 'color: #C92A2A'
   end
 end

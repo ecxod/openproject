@@ -33,8 +33,16 @@ module Storages::Peripherals
       @oauth_client = storage.oauth_client
     end
 
-    # The download_command is actually a query and should be refactored
+    def download_link_query(user:)
+      storage_queries(user)
+        .download_link_query
+        .map { |query| query.method(:query).to_proc }
+    end
+
+    # <b>DEPRECATED:</b> Please use <tt>download_link_query</tt> instead.
     def download_command
+      warn "[DEPRECATION] `download_command` is deprecated.  Please use `download_link_query` instead."
+
       ->(access_token:, file_id:) do
         request_url = File.join(@oauth_client.integration.host, '/ocs/v2.php/apps/dav/api/v1/direct')
         body = { fileId: file_id }
@@ -57,6 +65,14 @@ module Storages::Peripherals
     end
 
     def files_query(user:)
+      storage_queries(user)
+        .files_query
+        .map { |query| query.method(:query).to_proc }
+    end
+
+    private
+
+    def storage_queries(user)
       ::Storages::Peripherals::StorageInteraction::StorageQueries
         .new(
           uri: URI(@storage.host),
@@ -64,8 +80,6 @@ module Storages::Peripherals
           user:,
           oauth_client: @oauth_client
         )
-        .files_query
-        .map { |query| query.method(:files).to_proc }
     end
   end
 end

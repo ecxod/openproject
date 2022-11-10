@@ -219,7 +219,7 @@ describe 'API v3 storages resource', type: :request, content_type: :json do
     describe 'with query failed' do
       let(:files_query) do
         Struct.new('FilesQuery', :error) do
-          def files(_)
+          def query(_)
             ServiceResult.failure(result: error)
           end
         end.new(error)

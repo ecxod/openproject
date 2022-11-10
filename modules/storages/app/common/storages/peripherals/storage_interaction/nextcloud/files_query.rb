@@ -26,8 +26,8 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module Storages::Peripherals::StorageInteraction
-  class NextcloudStorageQuery
+module Storages::Peripherals::StorageInteraction::Nextcloud
+  class FilesQuery < StorageQuery
     def initialize(base_uri:, origin_user_id:, token:, with_refreshed_token:)
       @uri = base_uri
       @origin_user_id = origin_user_id
@@ -36,13 +36,13 @@ module Storages::Peripherals::StorageInteraction
       @base_path = "/remote.php/dav/files/#{@origin_user_id}"
     end
 
-    def files(parent)
+    def query(data)
       http = Net::HTTP.new(@uri.host, @uri.port)
       http.use_ssl = @uri.scheme == 'https'
 
       result = @with_refreshed_token.call do
         response = http.propfind(
-          "#{@base_path}#{parent}",
+          "#{@base_path}#{data}",
           requested_properties,
           {
             'Depth' => '1',

@@ -1,6 +1,7 @@
 module Components
   class WysiwygEditor
     include Capybara::DSL
+    include Capybara::RSpecMatchers
     include RSpec::Matchers
     attr_reader :context_selector, :attachments
 
@@ -26,6 +27,9 @@ module Components
     end
 
     def set_markdown(text)
+      # wait for element to be loaded
+      editor_element
+
       textarea = container.find('.op-ckeditor-source-element', visible: :all)
       page.execute_script(
         'jQuery(arguments[0]).trigger("op:ckeditor:setData", arguments[1])',

@@ -54,7 +54,7 @@ import { HalResource } from 'core-app/features/hal/resources/hal-resource';
 
 @Component({
   selector: 'op-files-tab',
-  templateUrl: './op-files-tab.html',
+  templateUrl: './op-files-tab.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkPackageFilesTabComponent implements OnInit {
@@ -63,9 +63,6 @@ export class WorkPackageFilesTabComponent implements OnInit {
   text = {
     attachments: {
       label: this.i18n.t('js.label_attachments'),
-    },
-    file_links: {
-      label: this.i18n.t('js.label_nextcloud'),
     },
   };
 

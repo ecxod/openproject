@@ -42,6 +42,7 @@ module OpenProject::Storages
 
     initializer 'openproject_storages.feature_decisions' do
       OpenProject::FeatureDecisions.add :storage_file_linking
+      OpenProject::FeatureDecisions.add :storage_file_upload
     end
 
     # For documentation see the definition of register in "ActsAsOpEngine"
@@ -118,6 +119,10 @@ module OpenProject::Storages
 
     add_api_path :storage_files do |storage_id|
       "#{root}/storages/#{storage_id}/files"
+    end
+
+    add_api_path :prepare_upload do |storage_id|
+      "#{root}/storages/#{storage_id}/files/prepare_upload"
     end
 
     add_api_path :file_links do |work_package_id|

@@ -28,15 +28,41 @@
 
 class API::V3::FileLinks::FileLinksDownloadAPI < ::API::OpenProjectAPI
   helpers Storages::Peripherals::StorageUrlHelper
+  using Storages::Peripherals::ServiceResultRefinements
+
+  helpers do
+    def raise_error(error)
+      case error
+      when :not_found
+        raise API::Errors::NotFound.new
+      when :not_authorized
+        Rails.logger.error("An outbound request failed due to an authorization failure!")
+        raise API::Errors::InternalError.new
+      else
+        raise API::Errors::InternalError.new
+      end
+    end
+  end
 
   resources :download do
     get do
-      download_url = make_download_url file_link: @file_link, user: User.current
-
-      raise API::Errors::InternalError.new(download_url.result) if download_url.failure?
-
-      redirect download_url.result, body: "The requested resource can be downloaded from #{download_url.result}"
-      status 303
+      Storages::Peripherals::StorageRequests
+        .new(storage: @file_link.storage)
+        .download_link_query(user: User.current)
+        .match(
+          on_success: ->(download_link_query) {
+            download_link_query
+              .call(@file_link)
+              .match(
+                on_success: ->(url) do
+                  redirect(url, body: "The requested resource can be downloaded from #{url}")
+                  status(303)
+                end,
+                on_failure: ->(error) { raise_error(error) }
+              )
+          },
+          on_failure: ->(error) { raise_error(error) }
+        )
     end
   end
 end

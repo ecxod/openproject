@@ -228,10 +228,12 @@ tr:
           quick_overview: "OpenProject Enterprise Edition ile proje yönetimi ve ekip işbirliğine hızlı bir genel bakış edinin."
         upsale:
           become_hero: "Kahraman olun!"
+          enterprise_info_html: "%{feature_title} is an Enterprise <span class='spot-icon spot-icon_enterprise-badge'></span> feature."
+          upgrade_info: "Please upgrade to a paid plan to activate and start using it in your team."
           benefits:
             description: "Enterprise on-premises Edition'ın avantajları nelerdir?"
             high_security: "Güvenlik özellikleri"
-            high_security_text: "Tek oturum açma (SAML, OpenID Connect, CAS), iki faktörlü kimlik doğrulama ve LDAP gruplarının otomatik senkronizasyonu."
+            high_security_text: "Single sign on (SAML, OpenID Connect, CAS), LDAP groups."
             installation: "Kurulum desteği"
             installation_text: "Deneyimli yazılım mühendisleri, kendi altyapınızdaki eksiksiz kurulum ve kurulum sürecinde size rehberlik eder."
             premium_features: "Ayrıcalıklı özellikler"
@@ -240,6 +242,7 @@ tr:
             professional_support_text: "İş açısından kritik ortamlarda OpenProject çalıştırma konusunda uzman bilgiye sahip kıdemli destek mühendislerinden güvenilir, yüksek dokunuşlu destek alın."
           button_start_trial: "Deneme sürümüne başla"
           button_upgrade: "Şimdi Yükselt"
+          button_contact_us: "Contact us for a demo"
           button_book_now: "Şimdi rezervasyon yaptırın"
           confidence: >
             Açık Kaynak ve açık fikirli olmak üzere, test edilmiş ve desteklenen bir kurumsal sınıf proje yönetimi yazılımının güvenini sunuyoruz.
@@ -297,15 +300,15 @@ tr:
           learn_about: "Yeni özellikler hakkında daha fazla bilgi edinin"
           #Include the version to invalidate outdated translations in other locales.
           #Otherwise, e.g. chinese might still have the translations for 10.0 in the 12.0 release.
-          '12_3':
+          '12_4':
             standard:
-              learn_about_link: https://www.openproject.org/blog/openproject-12-3-release
+              learn_about_link: https://www.openproject.org/blog/openproject-12-4-release
               new_features_html: >
-                The release contains various new features and improvements: <br> <ul class="%{list_styling_class}"> <li>Define your global work week (weekends and non-working days of the week).</li> <li>Calculate duration based on start and finish dates and the possibility to consider non-working days (weekends) in scheduling.</li> <li>Add meaningful tooltips to the most essential actions.</li> <li>Copying a project will also copy file links attached to all work packages.</li> </ul>
+                The release contains various new features and improvements: <br> <ul class="%{list_styling_class}"> <li>Activate notification date alerts for upcoming dates and overdue tasks.</li> <li>We release two-factor authentication (2FA) for the Community edition.</li> <li>The work week display option is now also added to the team planner.</li> <li>List up to 3 people in a notification card when multiple people were involved in the changes.</li> </ul>
             bim:
-              learn_about_link: https://www.openproject.org/blog/openproject-12-3-release
+              learn_about_link: https://www.openproject.org/blog/openproject-12-4-release
               new_features_html: >
-                The release contains various new features and improvements: <br> <ul class="%{list_styling_class}"> <li>Define your global work week (weekends and non-working days of the week).</li> <li>Calculate duration based on start and finish dates and the possibility to consider non-working days (weekends) in scheduling.</li> <li>Add meaningful tooltips to the most essential actions.</li> <li>Copying a project will also copy file links attached to all work packages.</li> </ul>
+                The release contains various new features and improvements: <br> <ul class="%{list_styling_class}"> <li>Activate notification date alerts for upcoming dates and overdue tasks.</li> <li>We release two-factor authentication (2FA) for the Community edition.</li> <li>The work week display option is now also added to the team planner.</li> <li>List up to 3 people in a notification card when multiple people were involved in the changes.</li> </ul>
     label_activate: "Etkinleştir"
     label_assignee: 'Atanan'
     label_add_column_after: "Sonrasına sütun ekle"
@@ -397,6 +400,7 @@ tr:
     label_no_data: "Görüntülenecek veri yok"
     label_no_due_date: "bitiş tarihi yok"
     label_no_start_date: "başlangıç tarihi yok"
+    label_no_date: "no date"
     label_no_value: "Değer yok"
     label_none: "hiçbiri"
     label_not_contains: "içermiyor"
@@ -554,6 +558,9 @@ tr:
         property_is: 'is in %{difference_in_days}'
         property_was: 'was %{difference_in_days} ago'
         property_is_deleted: 'is deleted'
+        upsale:
+          title: 'Date alerts'
+          description: 'With date alerts, you will be notified of upcoming start or finish dates so that you never miss or forget an important deadline.'
       facets:
         unread: 'okunmamış'
         unread_title: 'Show unread'
@@ -600,7 +607,7 @@ tr:
               P3D: 3 days before
               P7D: a week before
             overdue:
-              P1D: everyday
+              P1D: every day
               P3D: every 3 days
               P7D: every week
         reasons:
@@ -618,20 +625,20 @@ tr:
         global:
           immediately:
             title: 'Participating'
-            description: 'Notifications for all activities in work packages you are involved in (assignee, accountable or watcher)'
+            description: 'Notifications for all activities in work packages you are involved in (assignee, accountable or watcher).'
           delayed:
             title: 'Non-participating'
-            description: 'Additional notifications for activities in all projects'
+            description: 'Additional notifications for activities in all projects.'
           date_alerts:
             title: 'Date alerts'
-            description: 'Automatic notifications when important dates are approaching for open work packages you are involved in (assignee, accountable or watcher)'
+            description: 'Automatic notifications when important dates are approaching for open work packages you are involved in (assignee, accountable or watcher).'
             teaser_text: 'With date alerts, you will be notified of upcoming start or finish dates so that you never miss or forget an important deadline.'
-          start_date: Start Date
-          due_date: Finish Date
-          overdue: When Overdue
+          start_date: Start date
+          due_date: Finish date
+          overdue: When overdue
         project_specific:
           title: 'Project-specific notification settings'
-          description: 'These project-specific settings override default settings above'
+          description: 'These project-specific settings override default settings above.'
           add: 'Proje için ayar ekle'
           already_selected: 'Bu proje zaten seçildi'
           remove: 'Proje ayarlarını sil'
